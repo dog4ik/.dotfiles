@@ -106,13 +106,3 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Start ssh-agent if it is not already running
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    eval "$(ssh-agent -s)"
-fi
-
-# Add ssh key to ssh-agent with -k option if it is not already added
-if ! ssh-add -l > /dev/null; then
-    ssh-add -k ~/.ssh/github
-fi
