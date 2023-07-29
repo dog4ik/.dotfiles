@@ -211,7 +211,7 @@ bar {
 # CUSTOM KEYS START
 # ------------------------------------------
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-scale /home/dog4ik/Pictures/yennefer-witcher-3-oe.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/yen.jpg
 exec --no-startup-id xinput set-prop "SYNA7DB5:00 06CB:CD41 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id setxkbmap us
 exec --no-startup-id xrandr --output eDP --set "TearFree" on
