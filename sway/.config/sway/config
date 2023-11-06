@@ -146,8 +146,8 @@ bar {
 # ------------------------------------------
 
 input * {
-    xkb_layout "us"
-    xkb_variant "prime-dvorak"
+    xkb_layout "us,ru"
+    xkb_variant "prime-dvorak,"
     xkb_options "grp:win_space_toggle"
 }
 
