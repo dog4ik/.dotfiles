@@ -31,7 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ~/alacritty/target/release/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -162,7 +162,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/yen.jpg
 exec --no-startup-id xinput set-prop "SYNA7DB5:00 06CB:CD41 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id setxkbmap us
-exec --no-startup-id xrandr --output eDP --set "TearFree" on
+exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 240
 exec picom
 
 # FKeys
