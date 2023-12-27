@@ -13,8 +13,8 @@ bindsym $mod+Return exec ~/alacritty/target/release/alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start bemenu (a program launcher)
+bindsym $mod+d exec --no-startup-id bemenu-run -p "" --fn "DroidSansMNerdFont 18px" --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --nf "#cdd6f4" --af "#cdd6f4" --ab "#1e1e2e"
 
 # change focus
 bindsym $mod+h focus left
