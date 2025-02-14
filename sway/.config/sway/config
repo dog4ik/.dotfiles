@@ -57,21 +57,16 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
 # focus the parent container
 bindsym $mod+a focus parent
 
-# switch to workspace
+# focus the child container
+bindsym $mod+Shift+a focus child
 
-# bindsym $mod+1 workspace 1
-# bindsym $mod+2 workspace 2
-# bindsym $mod+3 workspace 3
-# bindsym $mod+4 workspace 4
-# bindsym $mod+5 workspace 5
-# bindsym $mod+6 workspace 6
-# bindsym $mod+7 workspace 7
-# bindsym $mod+8 workspace 8
-# bindsym $mod+9 workspace 9
-# bindsym $mod+0 workspace 10
+# switch to workspace
 
 bindsym $mod+plus workspace 1
 bindsym $mod+bracketleft workspace 2
@@ -86,17 +81,6 @@ bindsym $mod+asterisk workspace 10
 
 # move focused container to workspace
 
-# bindsym $mod+Shift+1 move container to workspace 1
-# bindsym $mod+Shift+2 move container to workspace 2
-# bindsym $mod+Shift+3 move container to workspace 3
-# bindsym $mod+Shift+4 move container to workspace 4
-# bindsym $mod+Shift+5 move container to workspace 5
-# bindsym $mod+Shift+6 move container to workspace 6
-# bindsym $mod+Shift+7 move container to workspace 7
-# bindsym $mod+Shift+8 move container to workspace 8
-# bindsym $mod+Shift+9 move container to workspace 9
-# bindsym $mod+Shift+0 move container to workspace 10
-
 bindsym $mod+Shift+plus move container to workspace 1
 bindsym $mod+Shift+bracketleft move container to workspace 2
 bindsym $mod+Shift+braceleft move container to workspace 3
@@ -110,23 +94,21 @@ bindsym $mod+Shift+asterisk move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart sway inplace
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # resize window (you can also use the mouse for that)
 mode "resize" {
 
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 75 px or 10 ppt
+        bindsym j resize grow height 75 px or 10 ppt
+        bindsym k resize shrink height 75 px or 10 ppt
+        bindsym l resize grow width 75 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 75 px or 10 ppt
+        bindsym Down resize grow height 75 px or 10 ppt
+        bindsym Up resize shrink height 75 px or 10 ppt
+        bindsym Right resize grow width 75 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -135,9 +117,9 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
-        status_command while ~/.config/sway/scripts/status.sh; do sleep 1; done
+        # status_command while ~/.config/sway/scripts/status.sh; do sleep 1; done
+        status_command i3status
         tray_output primary
 }
 
@@ -151,7 +133,20 @@ input * {
     xkb_options "grp:win_space_toggle, caps:escape"
 }
 
+input "1133:49300:Logitech_PRO_X_Wireless" {
+    natural_scroll disabled
+    accel_profile "flat"
+}
+
+input "1133:50503:Logitech_USB_Receiver" {
+    natural_scroll disabled
+    accel_profile "flat"
+}
+
 exec --no-startup-id nm-applet
+
+# enable wlr-portal for screensharing
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 output * background ~/Pictures/wallpapers/yen.jpg fill
 output * mode 1920x1080@240Hz
@@ -159,18 +154,27 @@ smart_borders on
 smart_gaps on
 default_border pixel 2
 
-# FKeys
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_up.sh 100
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/sway/scripts/volume_up.sh 100
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym Prior exec --no-startup-id ~/.config/sway/scripts/volume_up.sh 100
+bindsym Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 # Playerctl controls
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-# # Sreen brightness controls
+bindsym Pause exec --no-startup-id playerctl play-pause
+bindsym Home exec --no-startup-id playerctl previous
+bindsym End exec --no-startup-id playerctl next
+bindsym Print exec --no-startup-id grim - | wl-copy
+# Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
 
-# Suspend
-bindsym $mod+Shift+period exec systemctl suspend
+# Poweroff
+bindsym $mod+Shift+period exec systemctl poweroff
+
+#Start Apps
+bindsym $mod+b exec firefox-developer-edition
+bindsym $mod+g exec steam steam://rungameid/322170

@@ -1,15 +1,15 @@
 [window]
-opacity = 0.7
+opacity = 0.75
 dynamic_title = true
 decorations_theme_variant = "None"
 
 [font]
 normal = { family = "DroidSansM Nerd Font Mono", style = "Normal" }
-size = 18
+size = 13
 
 [colors]
 primary = { background = "#000000" }
-normal = { black = "#000000", red = "#FF0000", green = "#00FF00", yellow = "#FFFF00", blue = "#0000FF", magenta = "#FF00FF", cyan = "#00FFFF", white = "#FFFFFF" } 
+# normal = { black = "#000000", red = "#FF0000", green = "#00FF00", yellow = "#FFFF00", blue = "#0000FF", magenta = "#FF00FF", cyan = "#00FFFF", white = "#FFFFFF" }
 
 [mouse]
-hide_when_typing = false
+hide_when_typing = true
