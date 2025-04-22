@@ -5,7 +5,7 @@ decorations_theme_variant = "None"
 
 [font]
 normal = { family = "DroidSansM Nerd Font Mono", style = "Normal" }
-size = 13
+size = 15.5
 
 [colors]
 primary = { background = "#000000" }
