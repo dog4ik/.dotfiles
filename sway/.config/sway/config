@@ -133,14 +133,10 @@ input * {
     xkb_options "grp:win_space_toggle, caps:escape"
 }
 
-input "1133:49300:Logitech_PRO_X_Wireless" {
+input type:pointer {
     natural_scroll disabled
     accel_profile "flat"
-}
-
-input "1133:50503:Logitech_USB_Receiver" {
-    natural_scroll disabled
-    accel_profile "flat"
+    left_handed enabled
 }
 
 exec --no-startup-id nm-applet
