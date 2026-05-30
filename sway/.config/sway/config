@@ -136,7 +136,7 @@ input * {
 input type:pointer {
     natural_scroll disabled
     accel_profile "flat"
-    left_handed enabled
+    left_handed disabled
 }
 
 exec --no-startup-id nm-applet
@@ -155,7 +155,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/sway/scripts/volume_
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym Prior exec --no-startup-id ~/.config/sway/scripts/volume_up.sh 100
 bindsym Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
 # Playerctl controls
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
@@ -164,6 +164,7 @@ bindsym Pause exec --no-startup-id playerctl play-pause
 bindsym Home exec --no-startup-id playerctl previous
 bindsym End exec --no-startup-id playerctl next
 bindsym Print exec --no-startup-id grim - | wl-copy
+bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" - | wl-copy
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
