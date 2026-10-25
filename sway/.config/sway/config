@@ -153,6 +153,7 @@ default_border pixel 2
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/sway/scripts/volume_up.sh 100
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym Prior exec --no-startup-id ~/.config/sway/scripts/volume_up.sh 100
 bindsym Next exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 
